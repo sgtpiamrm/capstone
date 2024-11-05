@@ -47,7 +47,7 @@
                         </p>
                       </a>
                     </li>
-                    <?php if($_settings->userdata('type') == 1): ?>
+                    <?php if($_settings->userdata('type') ): ?>
                     <li class="nav-header">Maintenance</li>
                     <li class="nav-item dropdown">
                       <a href="<?php echo base_url ?>admin/?page=departments" class="nav-link nav-departments">
