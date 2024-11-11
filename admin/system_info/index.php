@@ -21,7 +21,7 @@
 <div class="col-lg-12">
 	<div class="card card-outline card-primary">
 		<div class="card-header">
-			<h5 class="card-title">System Information</h5>
+			<h2 class="card-title"><b>System Information</b></h2>
 		</div>
 		<div class="card-body">
 			<form action="" id="system-frm">
