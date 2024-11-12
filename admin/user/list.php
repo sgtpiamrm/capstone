@@ -17,9 +17,12 @@
 	<div class="card-header">
 		<h2 class="card-title"><b> List of System Users</b></h2>
 		<div class="card-tools">
-			<a href="?page=user/manage_user" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span> Create
-				New</a>
+			<a href="?page=user/manage_user" class="btn btn-flat btn-primary"
+				style="border-radius: 3px; padding: 5px 7px;">
+				<span class="fas fa-plus"></span> Create New
+			</a>
 		</div>
+
 	</div>
 	<div class="card-body">
 		<div class="container-fluid">
@@ -50,7 +53,7 @@
 						$qry = $conn->query("SELECT *,concat(firstname,' ',lastname) as name from `users` where id != '1' order by concat(firstname,' ',lastname) asc ");
 						while ($row = $qry->fetch_assoc()):
 							?>
-							<tr>
+							<tr style="background-color: <?= ($i % 2 == 0) ? '#e6f7ff' : 'inherit' ?>;">
 								<td class="text-center"><?php echo $i++; ?></td>
 								<td class="text-center"><img src="<?php echo validate_image($row['avatar']) ?>"
 										class="img-avatar img-thumbnail p-0 border-2" alt="user_avatar"></td>

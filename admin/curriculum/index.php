@@ -11,8 +11,8 @@
 	<div class="card-header">
 		<h2 class="card-title"><b> List of Curriculum</b></h2>
 		<div class="card-tools">
-			<a href="javascript:void(0)" id="create_new" class="btn btn-flat btn-sm btn-primary"><span
-					class="fas fa-plus"></span> Add New Curriculum</a>
+			<a href="javascript:void(0)" id="create_new" class="btn btn-flat btn-sm btn-primary"
+				style="border-radius: 3px;"><span class="fas fa-plus"></span> Add New Curriculum</a>
 		</div>
 	</div>
 	<div class="card-body">
@@ -44,7 +44,7 @@
 						while ($row = $qry->fetch_assoc()):
 
 							?>
-							<tr>
+							<tr style="background-color: <?= ($i % 2 == 0) ? '#e6f7ff' : 'inherit' ?>;">
 								<td class="text-center"><?php echo $i++; ?></td>
 								<td class=""><?php echo date("Y-m-d H:i", strtotime($row['date_created'])) ?></td>
 								<td class=""><?php echo $row['department'] ?></td>

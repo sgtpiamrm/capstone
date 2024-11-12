@@ -12,7 +12,7 @@
 		<h2 class="card-title"><b>List of Department</b></h2>
 		<div class="card-tools">
 			<a href="javascript:void(0)" id="create_new" class="btn btn-flat btn-sm btn-primary"
-				style="border-radius: 5px;">
+				style="border-radius: 3px;">
 				<span class="fas fa-plus"></span> Add New Department
 			</a>
 		</div>
@@ -46,7 +46,7 @@
 						while ($row = $qry->fetch_assoc()):
 
 							?>
-							<tr>
+							<tr style="background-color: <?= ($i % 2 == 0) ? '#e6f7ff' : 'inherit' ?>;">
 								<td class="text-center"><?php echo $i++; ?></td>
 								<td class=""><?php echo date("Y-m-d H:i", strtotime($row['date_created'])) ?></td>
 								<td><?php echo ucwords($row['name']) ?></td>
