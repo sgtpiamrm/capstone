@@ -17,9 +17,12 @@
 	<div class="card-header">
 		<h2 class="card-title"><b> List of System Users</b></h2>
 		<div class="card-tools">
-			<a href="?page=user/manage_user" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span> Create
-				New</a>
+			<a href="?page=user/manage_user" class="btn btn-flat btn-primary"
+				style="border-radius: 3px; padding: 5px 7px;">
+				<span class="fas fa-plus"></span> Create New
+			</a>
 		</div>
+
 	</div>
 	<div class="card-body">
 		<div class="container-fluid">
