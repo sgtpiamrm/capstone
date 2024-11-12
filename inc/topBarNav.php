@@ -34,7 +34,9 @@
 <nav class="bg-navy w-100 px-2 py-1 position-fixed top-0" id="login-nav">
   <div class="d-flex justify-content-between w-100">
     <div>
+      <span class="mr-2  text-white"><i class="fa fa-map-marker mr-1"></i> <?= $_settings->info('address') ?></span>
       <span class="mr-2  text-white"><i class="fa fa-phone mr-1"></i> <?= $_settings->info('contact') ?></span>
+      <span class="mr-2  text-white"><i class="fa fa-envelope mr-1"></i> <?= $_settings->info('email') ?></span>
     </div>
     <div>
       <?php if ($_settings->userdata('id') > 0): ?>
