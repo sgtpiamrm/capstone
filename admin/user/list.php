@@ -50,7 +50,7 @@
 						$qry = $conn->query("SELECT *,concat(firstname,' ',lastname) as name from `users` where id != '1' order by concat(firstname,' ',lastname) asc ");
 						while ($row = $qry->fetch_assoc()):
 							?>
-							<tr>
+							<tr style="background-color: <?= ($i % 2 == 0) ? '#e6f7ff' : 'inherit' ?>;">
 								<td class="text-center"><?php echo $i++; ?></td>
 								<td class="text-center"><img src="<?php echo validate_image($row['avatar']) ?>"
 										class="img-avatar img-thumbnail p-0 border-2" alt="user_avatar"></td>

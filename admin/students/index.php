@@ -40,7 +40,7 @@
 						$qry = $conn->query("SELECT *,concat(lastname,', ',firstname,' ', middlename) as name from `student_list`  order by concat(lastname,', ',firstname,' ', middlename) asc ");
 						while ($row = $qry->fetch_assoc()):
 							?>
-							<tr>
+							<tr style="background-color: <?= ($i % 2 == 0) ? '#e6f7ff' : 'inherit' ?>;">
 								<td class="text-center"><?php echo $i++; ?></td>
 								<td class="text-center"><img src="<?php echo validate_image($row['avatar']) ?>"
 										class="img-avatar img-thumbnail p-0 border-2" alt="user_avatar"></td>
@@ -65,7 +65,7 @@
 									<div class="dropdown-menu" role="menu">
 										<a class="dropdown-item view_details" href="javascript:void(0)"
 											data-id="<?php echo $row['id'] ?>"><span class="fa fa-eye text-dark"></span>
-											view</a>
+											View</a>
 										<div class="dropdown-divider"></div>
 										<?php if ($row['status'] != 1): ?>
 											<a class="dropdown-item verify_user" href="javascript:void(0)"

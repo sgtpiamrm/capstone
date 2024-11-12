@@ -44,7 +44,7 @@
 						while ($row = $qry->fetch_assoc()):
 
 							?>
-							<tr>
+							<tr style="background-color: <?= ($i % 2 == 0) ? '#e6f7ff' : 'inherit' ?>;">
 								<td class="text-center"><?php echo $i++; ?></td>
 								<td class=""><?php echo date("Y-m-d H:i", strtotime($row['date_created'])) ?></td>
 								<td class=""><?php echo $row['department'] ?></td>
