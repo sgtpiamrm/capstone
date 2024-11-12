@@ -1,19 +1,19 @@
 <?php
 require_once('../../config.php');
-if(isset($_GET['id'])){
+if (isset($_GET['id'])) {
     $qry = $conn->query("SELECT c.*, d.name as department from `curriculum_list` c inner join `department_list` d on c.department_id = d.id where c.id = '{$_GET['id']}'");
-    if($qry->num_rows > 0){
+    if ($qry->num_rows > 0) {
         $res = $qry->fetch_array();
-        foreach($res as $k => $v){
-            if(!is_numeric($k))
-            $$k = $v;
+        foreach ($res as $k => $v) {
+            if (!is_numeric($k))
+                $$k = $v;
         }
     }
 }
 ?>
 <style>
-    #uni_modal .modal-footer{
-        display:none !important;
+    #uni_modal .modal-footer {
+        display: none !important;
     }
 </style>
 <div class="container-fluid">
@@ -29,20 +29,25 @@ if(isset($_GET['id'])){
         <dt class="text-muted">Status</dt>
         <dd class='pl-4'>
             <?php
-            if(isset($status)):
-                switch($status){
+            if (isset($status)):
+                switch ($status):
                     case '1':
-                        echo "<span class='badge badge-success badge-pill'>Active</span>";
+                        // Apply padding for Active status (Green)
+                        echo "<span class='badge badge-pill' style='background-color: #28a745; color: white; padding: 5px 10px;'>Active</span>";
                         break;
                     case '0':
-                        echo "<span class='badge badge-secondary badge-pill'>Inactive</span>";
+                        // Apply padding for Inactive status (Gray)
+                        echo "<span class='badge badge-pill' style='background-color: #6c757d; color: white; padding: 5px 10px;'>Inactive</span>";
                         break;
-                }
+                endswitch;
             endif;
             ?>
+
         </dd>
     </dl>
     <div class="col-12 text-right">
-        <button class="btn btn-flat btn-sm btn-dark" type="button" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+        <button class="btn btn-dark btn-sm" style="border-radius: 3px;" data-dismiss="modal" type="button">
+            <i class="fa fa-times"></i> Close
+        </button>
     </div>
 </div>
