@@ -55,15 +55,16 @@
     }
   })
 </script>
-<footer class="main-footer text-sm">
-  <strong>© 2024 New Era University.<?php echo date('Y') ?>.
+<footer class="main-footer text-sm" style="background-color: #007bff; color: white; padding: 15px; text-align: left;">
+  <strong>© 2024 New Era University <?php echo date('Y') ?>.
     <!-- <a href=""></a> -->
   </strong>
   All rights reserved. Designed By MRS
+  <!-- Backup codes if ever needed
   <div class="float-right d-none d-sm-inline-block">
     <b><?php echo $_settings->info('short_name') ?> (by: <a href="mailto:pia.mahinay@neu.edu.ph" target="blank">MRS</a>
       )</b> v1.0
-  </div>
+  </div> -->
 </footer>
 </div>
 <!-- ./wrapper -->
