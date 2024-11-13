@@ -4,9 +4,12 @@
 <?php require_once('inc/header.php') ?>
 
 <body class="hold-transition ">
+    <!-- Start Page Loader -->
     <script>
         start_loader()
     </script>
+
+    <!-- Inline Styles for the Page -->
     <style>
         html,
         body {
@@ -24,9 +27,6 @@
             text-shadow: 2px 2px black
         }
 
-        /* #login{
-      flex-direction:column !important
-    } */
         #login {
             direction: rtl
         }
@@ -42,29 +42,32 @@
             object-position: center center;
             border-radius: 100%;
         }
-
-        /* #login .col-7,#login .col-5{
-      width: 100% !important;
-      max-width:unset !important
-    } */
     </style>
+
+    <!-- Login Container -->
     <div class="h-100 d-flex  align-items-center w-100" id="login">
+        <!-- Left Column for Logo and Title -->
         <div class="col-7 h-100 d-flex align-items-center justify-content-center">
             <div class="w-100">
                 <center><img src="<?= validate_image($_settings->info('logo')) ?>" alt="" id="logo-img"></center>
                 <h1 class="text-center py-5 login-title"><b><?php echo $_settings->info('name') ?> - Student</b></h1>
             </div>
-
         </div>
+
+        <!-- Right Column for Registration Form -->
         <div class="col-5 h-100 bg-gradient bg-navy">
             <div class="w-100 d-flex justify-content-center align-items-center h-100 text-navy">
                 <div class="card card-outline card-primary rounded-0 shadow col-lg-10 col-md-10 col-sm-5">
                     <div class="card-header">
                         <h5 class="card-title text-center text-dark"><b>Registration</b></h5>
                     </div>
+
+                    <!-- Registration Form -->
                     <div class="card-body">
                         <form action="" id="registration-form">
                             <input type="hidden" name="id">
+
+                            <!-- Name Fields (First, Middle, Last) -->
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
@@ -80,6 +83,8 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Last Name Field -->
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
@@ -88,6 +93,8 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Gender Selection -->
                             <div class="row">
                                 <div class="form-group col-auto">
                                     <div class="custom-control custom-radio">
@@ -104,6 +111,8 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Department Selection -->
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group">
@@ -122,6 +131,8 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Curriculum Selection -->
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group">
@@ -129,7 +140,7 @@
                                         <select name="curriculum_id" id="curriculum_id"
                                             class="form-control form-control-border select2"
                                             data-placeholder="Select Here Curriculum" required>
-                                            <option value="" disabled selected>Select Deparment First</option>
+                                            <option value="" disabled selected>Select Department First</option>
                                             <?php
                                             $curriculum = $conn->query("SELECT * FROM `curriculum_list` where status = 1 order by `name` asc");
                                             $cur_arr = [];
@@ -143,6 +154,7 @@
                                 </div>
                             </div>
 
+                            <!-- Email and Password Fields -->
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group">
@@ -167,6 +179,8 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Profile Image Upload -->
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group">
@@ -176,6 +190,8 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Submit Button -->
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group text-right">
@@ -199,6 +215,7 @@
     <!-- Select2 -->
     <script src="<?php echo base_url ?>plugins/select2/js/select2.full.min.js"></script>
 
+    <!-- Registration Form Script -->
     <script>
         var cur_arr = $.parseJSON('<?= json_encode($cur_arr) ?>');
         $(document).ready(function () {

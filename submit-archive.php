@@ -1,94 +1,134 @@
-<?php 
-if(isset($_GET['id']) && $_GET['id'] > 0){
+<?php
+// Check if an 'id' is passed in the URL and greater than 0
+if (isset($_GET['id']) && $_GET['id'] > 0) {
+    // Query the archive_list table for the specific archive ID
     $qry = $conn->query("SELECT * FROM `archive_list` where id = '{$_GET['id']}'");
-    if($qry->num_rows){
-        foreach($qry->fetch_array() as $k => $v){
-            if(!is_numeric($k))
-            $$k = $v;
+    // If the query returns results, fetch them and assign values to variables
+    if ($qry->num_rows) {
+        foreach ($qry->fetch_array() as $k => $v) {
+            if (!is_numeric($k))
+                $$k = $v; // Assign the values to variables dynamically
         }
     }
-    if(isset($student_id)){
-        if($student_id != $_settings->userdata('id')){
+    // Check if student_id is set and if it's not the current user's ID
+    if (isset($student_id)) {
+        if ($student_id != $_settings->userdata('id')) {
+            // Show an alert and redirect if the user does not have access
             echo "<script> alert('You don\'t have an access to this page'); location.replace('./'); </script>";
         }
     }
 }
 ?>
+
+<!-- Inline Styles for Project Image -->
 <style>
-    .banner-img{
-		object-fit:scale-down;
-		object-position:center center;
-        height:30vh;
-        width:calc(100%);
-	}
+    .banner-img {
+        object-fit: scale-down;
+        object-position: center center;
+        height: 30vh;
+        width: calc(100%);
+    }
 </style>
+
+<!-- Content Section -->
 <div class="content py-4">
+    <!-- Card Wrapper for Project Submission/Update -->
     <div class="card card-outline card-primary shadow rounded-0">
         <div class="card-header rounded-0">
+            <!-- Dynamic Header for Submission or Update -->
             <h5 class="card-title"><?= isset($id) ? "Update Archive-{$archive_code} Details" : "Submit Project" ?></h5>
         </div>
+
+        <!-- Form Body -->
         <div class="card-body rounded-0">
             <div class="container-fluid">
+                <!-- Archive Form -->
                 <form action="" id="archive-form">
+                    <!-- Hidden Field for Archive ID (if updating) -->
                     <input type="hidden" name="id" value="<?= isset($id) ? $id : "" ?>">
+
+                    <!-- Project Title Input -->
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="title" class="control-label text-navy">Project Title</label>
-                                <input type="text" name="title" id="title" autofocus placeholder="Project Title" class="form-control form-control-border" value="<?= isset($title) ?$title : "" ?>" required>
+                                <input type="text" name="title" id="title" autofocus placeholder="Project Title"
+                                    class="form-control form-control-border" value="<?= isset($title) ? $title : "" ?>"
+                                    required>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Year Selection Dropdown -->
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="year" class="control-label text-navy">Year</label>
                                 <select name="year" id="year" class="form-control form-control-border" required>
-                                    <?php 
-                                        for($i= 0;$i < 51; $i++):
-                                    ?>
-                                    <option <?= isset($year) && $year == date("Y",strtotime(date("Y")." -{$i} years")) ? "selected" : "" ?>><?= date("Y",strtotime(date("Y")." -{$i} years")) ?></option>
+                                    <!-- Loop through past 50 years for selection -->
+                                    <?php
+                                    for ($i = 0; $i < 51; $i++):
+                                        ?>
+                                        <option <?= isset($year) && $year == date("Y", strtotime(date("Y") . " -{$i} years")) ? "selected" : "" ?>><?= date("Y", strtotime(date("Y") . " -{$i} years")) ?></option>
                                     <?php endfor; ?>
                                 </select>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Abstract Textarea -->
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="abstract" class="control-label text-navy">Abstract</label>
-                                <textarea rows="3" name="abstract" id="abstract" placeholder="abstract" class="form-control form-control-border summernote" required><?= isset($abstract) ? html_entity_decode($abstract) : "" ?></textarea>
+                                <textarea rows="3" name="abstract" id="abstract" placeholder="abstract"
+                                    class="form-control form-control-border summernote"
+                                    required><?= isset($abstract) ? html_entity_decode($abstract) : "" ?></textarea>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Project Members Textarea -->
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="members" class="control-label text-navy">Project Members</label>
-                                <textarea rows="3" name="members" id="members" placeholder="members" class="form-control form-control-border summernote-list-only" required><?= isset($members) ? html_entity_decode($members) : "" ?></textarea>
+                                <textarea rows="3" name="members" id="members" placeholder="members"
+                                    class="form-control form-control-border summernote-list-only"
+                                    required><?= isset($members) ? html_entity_decode($members) : "" ?></textarea>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Project Image/Banner Input and Display -->
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="img" class="control-label text-muted">Project Image/Banner Image</label>
-                                <input type="file" id="img" name="img" class="form-control form-control-border" accept="image/png,image/jpeg" onchange="displayImg(this,$(this))" <?= !isset($id) ? "required" : "" ?>>
+                                <input type="file" id="img" name="img" class="form-control form-control-border"
+                                    accept="image/png,image/jpeg" onchange="displayImg(this,$(this))" <?= !isset($id) ? "required" : "" ?>>
                             </div>
-
                             <div class="form-group text-center">
-                                <img src="<?= validate_image(isset($banner_path) ? $banner_path : "") ?>" alt="My Avatar" id="cimg" class="img-fluid banner-img bg-gradient-dark border">
+                                <!-- Display Project Image -->
+                                <img src="<?= validate_image(isset($banner_path) ? $banner_path : "") ?>"
+                                    alt="My Avatar" id="cimg" class="img-fluid banner-img bg-gradient-dark border">
                             </div>
                         </div>
                     </div>
+
+                    <!-- Project Document (PDF) Input -->
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label for="pdf" class="control-label text-muted">Project Document (PDF File Only)</label>
-                                <input type="file" id="pdf" name="pdf" class="form-control form-control-border" accept="application/pdf" <?= !isset($id) ? "required" : "" ?>>
+                                <label for="pdf" class="control-label text-muted">Project Document (PDF File
+                                    Only)</label>
+                                <input type="file" id="pdf" name="pdf" class="form-control form-control-border"
+                                    accept="application/pdf" <?= !isset($id) ? "required" : "" ?>>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Submit and Cancel Buttons -->
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group text-center">
@@ -102,63 +142,73 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
         </div>
     </div>
 </div>
-<script>
-    function displayImg(input,_this) {
-	    if (input.files && input.files[0]) {
-	        var reader = new FileReader();
-	        reader.onload = function (e) {
-	        	$('#cimg').attr('src', e.target.result);
-	        }
 
-	        reader.readAsDataURL(input.files[0]);
-	    }else{
+<!-- JavaScript to Handle Image Display and Form Submission -->
+<script>
+    // Display Image when selected for the project banner
+    function displayImg(input, _this) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#cimg').attr('src', e.target.result); // Display image in the img tag
+            }
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            // Fallback if no file is selected
             $('#cimg').attr('src', "<?= validate_image(isset($avatar) ? $avatar : "") ?>");
         }
-	}
-    $(function(){
+    }
+
+    $(function () {
+        // Initialize the summernote text editor for abstract and members
         $('.summernote').summernote({
             height: 200,
             toolbar: [
-                [ 'style', [ 'style' ] ],
-                [ 'font', [ 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear'] ],
-                [ 'fontname', [ 'fontname' ] ],
-                [ 'fontsize', [ 'fontsize' ] ],
-                [ 'color', [ 'color' ] ],
-                [ 'para', [ 'ol', 'ul', 'paragraph', 'height' ] ],
-                [ 'table', [ 'table' ] ],
+                ['style', ['style']],
+                ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+                ['fontname', ['fontname']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ol', 'ul', 'paragraph', 'height']],
+                ['table', ['table']],
                 ['insert', ['link', 'picture']],
-                [ 'view', [ 'undo', 'redo', 'help' ] ]
+                ['view', ['undo', 'redo', 'help']]
             ]
         })
         $('.summernote-list-only').summernote({
             height: 200,
             toolbar: [
-                [ 'font', [ 'bold', 'italic', 'clear'] ],
-                [ 'fontname', [ 'fontname' ] ]
-                [ 'color', [ 'color' ] ],
-                [ 'para', [ 'ol', 'ul' ] ],
-                [ 'view', [ 'undo', 'redo', 'help' ] ]
+                ['font', ['bold', 'italic', 'clear']],
+                ['fontname', ['fontname']],
+                ['color', ['color']],
+                ['para', ['ol', 'ul']],
+                ['view', ['undo', 'redo', 'help']]
             ]
         })
-        // Archive Form Submit
-        $('#archive-form').submit(function(e){
+
+        // Archive Form Submission Handler
+        $('#archive-form').submit(function (e) {
             e.preventDefault()
             var _this = $(this)
-                $(".pop-msg").remove()
+            $(".pop-msg").remove()
             var el = $("<div>")
-                el.addClass("alert pop-msg my-2")
-                el.hide()
+            el.addClass("alert pop-msg my-2")
+            el.hide()
+
+            // Start loader
             start_loader();
+
+            // AJAX request to save archive data
             $.ajax({
-                url:_base_url_+"classes/Master.php?f=save_archive",
-                data: new FormData($(this)[0]),
+                url: _base_url_ + "classes/Master.php?f=save_archive",
+                data: new FormData($(this)[0]),  // Serialize the form with files
                 cache: false,
                 contentType: false,
                 processData: false,
                 method: 'POST',
                 type: 'POST',
-                dataType:'json',
-                error:err=>{
+                dataType: 'json',
+                error: err => {  // Handle errors
                     console.log(err)
                     el.text("An error occured while saving the data")
                     el.addClass("alert-danger")
@@ -166,22 +216,22 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
                     el.show('slow')
                     end_loader()
                 },
-                success:function(resp){
-                    if(resp.status == 'success'){
-                        location.href= "./?page=view_archive&id="+resp.id
-                    }else if(!!resp.msg){
+                success: function (resp) {  // Handle successful response
+                    if (resp.status == 'success') {
+                        location.href = "./?page=view_archive&id=" + resp.id
+                    } else if (!!resp.msg) {
                         el.text(resp.msg)
                         el.addClass("alert-danger")
                         _this.prepend(el)
                         el.show('show')
-                    }else{
+                    } else {
                         el.text("An error occured while saving the data")
                         el.addClass("alert-danger")
                         _this.prepend(el)
                         el.show('show')
                     }
                     end_loader();
-                    $('html, body').animate({scrollTop: 0},'fast')
+                    $('html, body').animate({ scrollTop: 0 }, 'fast')
                 }
             })
         })
