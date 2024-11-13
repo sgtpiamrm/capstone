@@ -102,9 +102,9 @@
           <div class="d-flex justify-content-center h-100 w-100 align-items-center flex-column px-3">
             <!-- Title of the site -->
             <h1 class="w-100 text-center site-title"><?php echo $_settings->info('name') ?></h1>
-            <!-- Subtitle or quote for the site -->
             <p class="text-center" style="font-size: 40px; font-style: italic;">"Building Bridges to Knowledge, One
-              Archive at a Time"</p>
+              Archive
+              at a Time"</p>
           </div>
         </div>
       <?php endif; ?>

@@ -2,13 +2,11 @@
 
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4 sidebar-no-expand bg-dark">
-  <!-- Brand Logo Section -->
+  <!-- Brand Logo -->
   <a href="<?php echo base_url ?>admin" class="brand-link bg-transparent text-sm shadow-sm">
-    <!-- Display Store Logo -->
     <img src="<?php echo validate_image($_settings->info('logo')) ?>" alt="Store Logo"
       class="brand-image img-circle elevation-3 bg-white"
       style="width: 1.8rem;height: 1.8rem;max-height: unset;object-fit:scale-down;object-position:center center">
-    <!-- Display the Short Name of the Store -->
     <span class="brand-text font-weight-light"><?php echo $_settings->info('short_name') ?></span>
   </a>
 
@@ -35,8 +33,6 @@
             <ul
               class="nav nav-pills nav-sidebar flex-column text-sm nav-compact nav-flat nav-child-indent nav-collapse-hide-child"
               data-widget="treeview" role="menu" data-accordion="false">
-
-              <!-- Dashboard Menu Item -->
               <li class="nav-item dropdown">
                 <a href="./" class="nav-link nav-home">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
