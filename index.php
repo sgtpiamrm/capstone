@@ -59,9 +59,9 @@
         <div id="header" class="shadow mb-4">
           <div class="d-flex justify-content-center h-100 w-100 align-items-center flex-column px-3">
             <h1 class="w-100 text-center site-title"><?php echo $_settings->info('name') ?></h1>
-            <p class="text-center" style="font-size: 40px; font-style: italic;">"Building Bridges to Knowledge, One
-              Archive
-              at a Time"</p>
+            <p class="text-center" style="font-size: 40px; font-style: italic; font-weight: bold; text-shadow: 4px 5px 3px #b8c2cb;
+}">
+              "Building Bridges to Knowledge, One Archive at a Time"</p>
           </div>
         </div>
       <?php endif; ?>
