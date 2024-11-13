@@ -1,21 +1,7 @@
 <IfModule mod_rewrite.c>
-    <!-- Check if mod_rewrite is enabled -->
-    
-    RewriteEngine on
-    <!-- Turn on the RewriteEngine, enabling URL rewriting -->
 
-    RewriteCond %{REQUEST_FILENAME} !-f
-    <!-- Check if the requested filename is not a file. If it's a file, this condition is skipped. -->
-
-    RewriteCond %{REQUEST_FILENAME} !-d
-    <!-- Check if the requested filename is not a directory. If it's a directory, this condition is skipped. -->
-
-    RewriteRule ^(.*)$ /index.php/$2/?page=$1 [L]
-    <!-- Rewrite the URL:
-         - `^(.*)$` matches any URL request (capturing everything after the domain).
-         - Redirect the request to `/index.php/$2/?page=$1`:
-             - `$1` refers to the first captured group (everything before the first `/`).
-             - `$2` would be the second captured group, but it’s not used in this case (might be a mistake).
-         - The `[L]` flag indicates that this is the last rule to apply (no further rules will be processed if this one is applied). -->
-
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.\*)$ /index.php/$2/?page=$1 [L]
 </IfModule>
