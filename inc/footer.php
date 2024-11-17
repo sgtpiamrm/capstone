@@ -69,7 +69,7 @@
 </script>
 
 <!-- Footer Section -->
-<footer class="main-footer text-sm">
+<footer class="main-footer text-sm" style="background-color: #007bff; color: white; padding: 15px; text-align: left;">
   <div class="container">
     <!-- Footer Content -->
     <strong>© 2024 New Era University.<?php echo date('Y') ?>.</strong>

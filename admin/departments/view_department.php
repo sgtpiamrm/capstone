@@ -2,23 +2,32 @@
 // Include the configuration file to establish database connection
 require_once('../../config.php');
 
-// Check if the 'id' parameter is set in the URL query string
-if (isset($_GET['id'])) {
-    // Query the database to fetch package details based on the provided id
-    $qry = $conn->query("SELECT * FROM `package_list` where id = '{$_GET['id']}'");
+// Sanitize and validate the 'id' parameter
+$id = isset($_GET['id']) ? $conn->real_escape_string($_GET['id']) : null;
 
-    // If a package record is found
-    if ($qry->num_rows > 0) {
-        // Fetch the package data as an associative array
-        $res = $qry->fetch_array();
+if ($id) {
+    // Query the database
+    $qry = $conn->query("SELECT * FROM `curriculum_list` WHERE id = '{$id}'");
 
-        // Loop through each record field and assign values to variables
-        foreach ($res as $k => $v) {
-            // Avoid assigning numeric keys as variable names
-            if (!is_numeric($k))
-                $$k = $v; // Dynamically assign values to variables based on the field names
+    if ($qry) {
+        if ($qry->num_rows > 0) {
+            $res = $qry->fetch_array();
+            foreach ($res as $k => $v) {
+                if (!is_numeric($k)) {
+                    $$k = $v;
+                }
+            }
+        } else {
+            // Handle case when no records are found
+            die("<div class='alert alert-warning'>No package found for the given ID.</div>");
         }
+    } else {
+        // Handle query execution failure
+        die("<div class='alert alert-danger'>Query failed: " . $conn->error . "</div>");
     }
+} else {
+    // Handle missing or invalid 'id' parameter
+    die("<div class='alert alert-danger'>No valid 'id' provided in the URL.</div>");
 }
 ?>
 
@@ -35,12 +44,13 @@ if (isset($_GET['id'])) {
     <!-- Package name -->
     <dl>
         <dt class="text-muted">Name</dt>
-        <dd class='pl-4 fs-4 fw-bold'><?= isset($name) ? $name : '' ?></dd> <!-- Display the package name -->
+        <dd class='pl-4 fs-4 fw-bold'><?= isset($name) ? htmlspecialchars($name) : '' ?></dd>
+        <!-- Display the package name -->
 
         <!-- Package description -->
         <dt class="text-muted">Description</dt>
         <dd class='pl-4'>
-            <p class=""><small><?= isset($description) ? $description : '' ?></small></p>
+            <p class=""><small><?= isset($description) ? htmlspecialchars($description) : '' ?></small></p>
             <!-- Display the package description -->
         </dd>
 
