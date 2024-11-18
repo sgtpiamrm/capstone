@@ -188,13 +188,13 @@
 
         <?php if ($_settings->userdata('id') == 0): ?>
           <li class="nav-item">
-            <a href="./register.php" class="nav-link text-light">Register</a>
+            <a href="./register.php" class="nav-link" style="color: #808080;">Register</a>
           </li>
           <li class="nav-item">
-            <a href="./login.php" class="nav-link text-light">Student Login</a>
+            <a href="./login.php" class="nav-link" style="color: #808080;">Student Login</a>
           </li>
           <li class="nav-item">
-            <a href="./admin" class="nav-link text-light">Admin Login</a>
+            <a href="./admin" class="nav-link" style="color: #808080;">Admin Login</a>
           </li>
         <?php endif; ?>
       </ul>
