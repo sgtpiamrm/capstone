@@ -49,7 +49,6 @@
     display: inline-block;
     text-decoration: none;
     transition: color 0.3s ease;
-    /* Add transition for text color */
   }
 
   /* Underline effect */
@@ -61,9 +60,7 @@
     width: 0;
     height: 2px;
     background-color: #003c72;
-    /* Underline color */
     transition: width 0.3s, left 0.3s;
-    /* Transition for underline */
   }
 
   .navbar-nav .nav-item .nav-link:hover::before {
@@ -74,7 +71,6 @@
   /* Change text color on hover */
   .navbar-nav .nav-item .nav-link:hover {
     color: #003c72;
-    /* Hover text color */
   }
 
   /* Style for the Main Header Navbar */
@@ -102,12 +98,10 @@
     display: flex;
     justify-content: flex-end;
     margin-left: auto;
-    /* Align navbar items to the right */
   }
 
   .navbar-nav .nav-item {
     margin-left: 15px;
-    /* Space out the nav items */
   }
 
   /* Fix the user image in the login navbar */
@@ -136,11 +130,34 @@
 
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav">
+        <!-- Home -->
         <li class="nav-item">
           <a href="./" class="nav-link <?= isset($page) && $page == 'home' ? "active" : "" ?>">Home</a>
         </li>
 
+        <?php if ($_settings->userdata('id') == 0): ?>
+          <!-- Register -->
+          <li class="nav-item">
+            <a href="./register.php" class="nav-link" style="color: #808080;">Register</a>
+          </li>
+
+          <!-- Login Dropdown Menu -->
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" style="color: #808080;">Login</a>
+            <ul class="dropdown-menu">
+              <li><a href="./login.php" class="dropdown-item">Student Login</a></li>
+              <li><a href="./admin" class="dropdown-item">Admin Login</a></li>
+            </ul>
+          </li>
+        <?php endif; ?>
+
+        <!-- About Us -->
+        <li class="nav-item">
+          <a href="./?page=about" class="nav-link <?= isset($page) && $page == 'about' ? "active" : "" ?>">About Us</a>
+        </li>
+
         <?php if ($_settings->userdata('id') > 0): ?>
+          <!-- If logged in, show additional menu items like Profile and Submit Thesis -->
           <li class="nav-item">
             <a href="./?page=projects"
               class="nav-link <?= isset($page) && $page == 'projects' ? "active" : "" ?>">Projects</a>
@@ -169,13 +186,6 @@
               <?php endwhile; ?>
             </ul>
           </li>
-        <?php endif; ?>
-
-        <li class="nav-item">
-          <a href="./?page=about" class="nav-link <?= isset($page) && $page == 'about' ? "active" : "" ?>">About Us</a>
-        </li>
-
-        <?php if ($_settings->userdata('id') > 0): ?>
           <li class="nav-item">
             <a href="./?page=profile"
               class="nav-link <?= isset($page) && $page == 'profile' ? "active" : "" ?>">Profile</a>
@@ -183,18 +193,6 @@
           <li class="nav-item">
             <a href="./?page=submit-archive"
               class="nav-link <?= isset($page) && $page == 'submit-archive' ? "active" : "" ?>">Submit Thesis/Capstone</a>
-          </li>
-        <?php endif; ?>
-
-        <?php if ($_settings->userdata('id') == 0): ?>
-          <li class="nav-item">
-            <a href="./register.php" class="nav-link" style="color: #808080;">Register</a>
-          </li>
-          <li class="nav-item">
-            <a href="./login.php" class="nav-link" style="color: #808080;">Student Login</a>
-          </li>
-          <li class="nav-item">
-            <a href="./admin" class="nav-link" style="color: #808080;">Admin Login</a>
           </li>
         <?php endif; ?>
       </ul>
