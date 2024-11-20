@@ -59,7 +59,7 @@
     left: 50%;
     width: 0;
     height: 2px;
-    background-color: #003c72;
+    background-color: #00ace6;
     transition: width 0.3s, left 0.3s;
   }
 
@@ -70,7 +70,7 @@
 
   /* Change text color on hover */
   .navbar-nav .nav-item .nav-link:hover {
-    color: #003c72;
+    color: #00ace6;
   }
 
   /* Style for the Main Header Navbar */
