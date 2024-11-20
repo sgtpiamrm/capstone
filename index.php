@@ -6,7 +6,7 @@
 <style>
   /* Header section style */
   #header {
-    height: 70vh;
+    height: 100vh;
     /* Set header height to 70% of the viewport height */
     width: calc(100%);
     /* Set width to 100% of the container */
@@ -26,7 +26,7 @@
     /* Fill the full height of the header */
     width: calc(100%);
     /* Fill the full width of the header */
-    background-image: url(<?= validate_image($_settings->info("cover")) ?>);
+    background-color: #ffffff;
     /* Use a dynamic image URL */
     background-size: cover;
     /* Ensure background image covers the entire area */
@@ -94,7 +94,7 @@
     <?php endif; ?>
 
     <!-- Main content wrapper -->
-    <div class="content-wrapper pt-5" style="">
+    <div class="content-wrapper pt-5" style="min-height: 2px;">
 
       <!-- Display header for home or about_us page -->
       <?php if ($page == "home" || $page == "about_us"): ?>
@@ -102,100 +102,148 @@
           <div class="d-flex justify-content-center h-100 w-100 align-items-center flex-column px-3">
             <!-- Title of the site -->
             <h1 class="w-100 text-center site-title"><?php echo $_settings->info('name') ?></h1>
-            <p class="text-center" style="font-size: 40px; font-style: italic;">"Building Bridges to Knowledge, One
-              Archive
-              at a Time"</p>
+
+            <!-- Searchable OPAC feature -->
+            <form id="search-form" action="search_results.php" method="GET">
+
+              <!-- Input Field -->
+              <div class="input-group">
+                <input type="text" name="q" id="search-input" class="form-control" style="width: 450px;"
+                  placeholder="Search archives, keywords, or authors..." required
+                  value="<?= isset($_GET['q']) ? $_GET['q'] : '' ?>">
+                <!-- Search Button -->
+                <button type="submit" class="btn btn-primary" id="search_icon">
+                  <i class="fas fa-search"></i></button>
+                <div style="margin-left: 8px;">
+                  <select id="course-select" name="course" class="form-control" style="width: 148px;">
+                    <option value="">Select Course</option>
+                    <option value="BEEd">BEEd</option>
+                    <option value="BS Computer Engineering">BS Computer Engineering</option>
+                    <option value="BS Civil Engineering">BS Civil Engineering</option>
+                    <option value="BSEd">BSEd</option>
+                    <option value="BSIS">BS Information Systems</option>
+                    <option value="BSIT">BS Information Technology</option>
+                    <option value="BSNEd">BS Nursing Education</option>
+                  </select>
+                </div>
+            </form>
           </div>
         </div>
-      <?php endif; ?>
+      </div>
+    <?php endif; ?>
 
-      <!-- Main content section -->
-      <section class="content ">
-        <div class="container">
-          <?php
-          // Include content based on the page variable
-          if (!file_exists($page . ".php") && !is_dir($page)) {
-            include '404.html';  // If the page is not found, include the 404 error page
+    <script>
+      $(function () {
+        // Handle form submission via Search Icon
+        $('#search_icon').click(function (e) {
+          e.preventDefault(); // Prevent default form submission
+          const query = $('#search-input').val().trim();
+          if (query.length === 0) {
+            location.href = './'; // Redirect to homepage if the input is empty
           } else {
-            if (is_dir($page))
-              include $page . '/index.php';  // If it's a directory, include its index.php
-            else
-              include $page . '.php';  // Otherwise, include the page as a PHP file
+            location.href = './?page=projects&q=' + encodeURIComponent(query); // Redirect with query parameter
           }
-          ?>
-        </div>
-      </section>
-      <!-- /.content -->
+        });
 
-      <!-- Modal for confirmation (e.g., delete confirmation) -->
-      <div class="modal fade" id="confirm_modal" role='dialog'>
-        <div class="modal-dialog modal-md modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Confirmation</h5>
-            </div>
-            <div class="modal-body">
-              <div id="delete_content"></div> <!-- Content for the confirmation message -->
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary" id='confirm' onclick="">Continue</button>
-              <!-- Continue button -->
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> <!-- Close button -->
-            </div>
-          </div>
-        </div>
+        // Optional: Focus on the input field when the search icon is clicked
+        $('#search_icon').click(function () {
+          $('#search-input').focus();
+        });
+
+        // Hide search field on focus out (optional UI behavior)
+        $('#search-input').focusout(function () {
+          $(this).removeClass('show');
+        });
+      });
+    </script>
+
+    <!-- Main content section -->
+    <section class="content ">
+      <div class="container">
+        <?php
+        // Include content based on the page variable
+        if (!file_exists($page . ".php") && !is_dir($page)) {
+          include '404.html';  // If the page is not found, include the 404 error page
+        } else {
+          if (is_dir($page))
+            include $page . '/index.php';  // If it's a directory, include its index.php
+          else
+            include $page . '.php';  // Otherwise, include the page as a PHP file
+        }
+        ?>
       </div>
+    </section>
+    <!-- /.content -->
 
-      <!-- Modal for general purposes (e.g., editing or saving data) -->
-      <div class="modal fade" id="uni_modal" role='dialog'>
-        <div class="modal-dialog modal-md modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title"></h5>
-            </div>
-            <div class="modal-body">
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary" id='submit'
-                onclick="$('#uni_modal form').submit()">Save</button> <!-- Save button -->
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-              <!-- Cancel button -->
-            </div>
+    <!-- Modal for confirmation (e.g., delete confirmation) -->
+    <div class="modal fade" id="confirm_modal" role='dialog'>
+      <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Confirmation</h5>
           </div>
-        </div>
-      </div>
-
-      <!-- Modal for displaying content on the right side -->
-      <div class="modal fade" id="uni_modal_right" role='dialog'>
-        <div class="modal-dialog modal-full-height  modal-md" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title"></h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span class="fa fa-arrow-right"></span>
-              </button>
-            </div>
-            <div class="modal-body">
-            </div>
+          <div class="modal-body">
+            <div id="delete_content"></div> <!-- Content for the confirmation message -->
           </div>
-        </div>
-      </div>
-
-      <!-- Modal for viewing images -->
-      <div class="modal fade" id="viewer_modal" role='dialog'>
-        <div class="modal-dialog modal-md" role="document">
-          <div class="modal-content">
-            <button type="button" class="btn-close" data-dismiss="modal"><span class="fa fa-times"></span></button>
-            <!-- Close button -->
-            <img src="" alt=""> <!-- Placeholder for image to be displayed -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id='confirm' onclick="">Continue</button>
+            <!-- Continue button -->
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> <!-- Close button -->
           </div>
         </div>
       </div>
     </div>
-    <!-- /.content-wrapper -->
 
-    <!-- Including footer -->
-    <?php require_once('inc/footer.php') ?>
+    <!-- Modal for general purposes (e.g., editing or saving data) -->
+    <div class="modal fade" id="uni_modal" role='dialog'>
+      <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"></h5>
+          </div>
+          <div class="modal-body">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id='submit'
+              onclick="$('#uni_modal form').submit()">Save</button> <!-- Save button -->
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <!-- Cancel button -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for displaying content on the right side -->
+    <div class="modal fade" id="uni_modal_right" role='dialog'>
+      <div class="modal-dialog modal-full-height  modal-md" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span class="fa fa-arrow-right"></span>
+            </button>
+          </div>
+          <div class="modal-body">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for viewing images -->
+    <div class="modal fade" id="viewer_modal" role='dialog'>
+      <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+          <button type="button" class="btn-close" data-dismiss="modal"><span class="fa fa-times"></span></button>
+          <!-- Close button -->
+          <img src="" alt=""> <!-- Placeholder for image to be displayed -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Including footer -->
+  <?php require_once('inc/footer.php') ?>
 </body>
 
 </html>

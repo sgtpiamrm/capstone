@@ -15,7 +15,7 @@
     .car-item:hover {
         transform: translate(0, -4px);
         /* Move the car item slightly upward when hovered */
-        background: #a5a5a521;
+        background: #ffffff;
         /* Add a semi-transparent background color */
     }
 
@@ -63,14 +63,17 @@
             <!-- Card body where content goes -->
             <div class="card-body rounded-0">
                 <!-- Inner container for aligning content -->
-                <div class="container-fluid">
-                    <!-- Heading for the welcome section -->
-                    <h3 class="text-center">Welcome</h3>
-                    <hr> <!-- Horizontal line for separating sections -->
-                    <!-- Div for the welcome content -->
-                    <div class="welcome-content">
-                        <?php include("welcome.html") ?> <!-- Include the external 'welcome.html' file -->
-                    </div>
+
+
+                <hr> <!-- Horizontal line for separating sections -->
+                <!-- Div for the welcome content -->
+                <div class="welcome-content">
+                    <h2>Welcome to NEUScholar!</h2>
+                    <p>We're excited to have you on board! NEUScholar is a platform dedicated to empowering scholars and
+                        researchers to achieve their full potential. Our mission is to provide a supportive community,
+                        cutting-edge tools, and innovative resources to help you succeed in your academic pursuits.</p>
+                    <?php include("welcome.html") ?> <!-- Include the external 'welcome.html' file -->
+
                 </div>
             </div>
         </div>
