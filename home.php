@@ -15,7 +15,7 @@
     .car-item:hover {
         transform: translate(0, -4px);
         /* Move the car item slightly upward when hovered */
-        background: #ffffff;
+        background: #a5a5a521;
         /* Add a semi-transparent background color */
     }
 
@@ -68,7 +68,7 @@
                 <hr> <!-- Horizontal line for separating sections -->
                 <!-- Div for the welcome content -->
                 <div class="welcome-content">
-                    <h2>Welcome to NEUScholar!</h2>
+                    <h2 class="text-center" style="font-family: 'Poppins', sans-serif;">Welcome to NEUScholar!</h2>
                     <p>We're excited to have you on board! NEUScholar is a platform dedicated to empowering scholars and
                         researchers to achieve their full potential. Our mission is to provide a supportive community,
                         cutting-edge tools, and innovative resources to help you succeed in your academic pursuits.</p>

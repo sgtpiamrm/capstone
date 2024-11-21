@@ -67,7 +67,8 @@
             <div class="w-100">
                 <center><img src="<?= validate_image($_settings->info('logo')) ?>" alt="" id="logo-img"></center>
                 <!-- Display the logo image -->
-                <h1 class="text-center py-5 login-title"><b><?php echo $_settings->info('name') ?> - Student</b></h1>
+                <h1 class="text-center py-5 login-title"><b><?php echo $_settings->info('short_name') ?> - Student</b>
+                </h1>
                 <!-- Site name and designation -->
             </div>
         </div>

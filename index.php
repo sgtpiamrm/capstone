@@ -6,7 +6,7 @@
 <style>
   /* Header section style */
   #header {
-    height: 100vh;
+    height: 50vh;
     /* Set header height to 70% of the viewport height */
     width: calc(100%);
     /* Set width to 100% of the container */
@@ -101,7 +101,8 @@
         <div id="header" class="shadow mb-4">
           <div class="d-flex justify-content-center h-100 w-100 align-items-center flex-column px-3">
             <!-- Title of the site -->
-            <h1 class="w-100 text-center site-title"><?php echo $_settings->info('name') ?></h1>
+            <img src="<?= validate_image($_settings->info('name')) ?>" id="logo-img" class="img-fluid"
+              style="width: 600px; height: 220px;"></img>
 
             <!-- Searchable OPAC feature -->
             <form id="search-form" action="search_results.php" method="GET">

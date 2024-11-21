@@ -71,7 +71,7 @@
         <center><img src="<?= validate_image($_settings->info('logo')) ?>" alt="" id="logo-img"></center>
         <!-- Displays the logo dynamically with the settings from $_settings -->
 
-        <h1 class="text-center py-5 login-title"><b><?php echo $_settings->info('name') ?> - Admin</b></h1>
+        <h1 class="text-center py-5 login-title"><b><?php echo $_settings->info('short_name') ?> - Admin</b></h1>
         <!-- Displays the title of the site (admin page), with text-shadow -->
       </div>
     </div>

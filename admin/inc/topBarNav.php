@@ -35,7 +35,8 @@
     <!-- Navbar Brand/Title -->
     <li class="nav-item d-none d-sm-inline-block">
       <a href="<?php echo base_url ?>" class="nav-link">
-        <b><?php echo (!isMobileDevice()) ? $_settings->info('name') : $_settings->info('short_name'); ?> - Admin</b>
+        <b><?php echo (!isMobileDevice()) ? $_settings->info('short_name') : $_settings->info('short_name'); ?> -
+          Admin</b>
       </a>
     </li>
   </ul>

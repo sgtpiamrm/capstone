@@ -214,9 +214,14 @@ label.star:before {
 }
 
 .site-title {
-    font-size: 5em !important;
-    color: white !important;
+    font-size: 8em !important;
+    color: rgb(131, 204, 240) !important;
     text-shadow: 4px 5px 3px #68717a !important;
+}
+
+.logo-img{
+    width: 500px !important;
+    height: 100px !important;
 }
 
 #top-header:before {
