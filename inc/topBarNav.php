@@ -25,6 +25,15 @@
   /* Adjusts the top spacing for the main navbar */
   #top-Nav {
     top: 4em;
+    transition: padding 0.3s ease-in-out, background-color 0.3s ease;
+    padding: 1.5em 2em;
+    /* Normal padding for main navbar */
+  }
+
+  /* Shrink navbar on scroll */
+  .navbar-shrink {
+    padding: 0.5em 1.5em !important;
+    background-color: rgba(255, 255, 255, 0.9) !important;
   }
 
   /* Adjusts content wrapper's margin for fixed navbar */
@@ -219,3 +228,15 @@
     </div>
   </div>
 </nav>
+
+<script>
+  // Shrink navbar on scroll
+  window.onscroll = function () {
+    var topNav = document.getElementById("top-Nav");
+    if (window.scrollY > 50) {
+      topNav.classList.add("navbar-shrink");
+    } else {
+      topNav.classList.remove("navbar-shrink");
+    }
+  };
+</script>
