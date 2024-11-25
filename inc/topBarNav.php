@@ -25,6 +25,15 @@
   /* Adjusts the top spacing for the main navbar */
   #top-Nav {
     top: 4em;
+    transition: padding 0.2s ease-in-out, background-color 0.3s ease;
+    padding: 1.5em 2em;
+    /* Normal padding for main navbar */
+  }
+
+  /* Shrink navbar on scroll */
+  .navbar-shrink {
+    padding: 0.5em 1.5em !important;
+    background-color: rgba(255, 255, 255, 0.9) !important;
   }
 
   /* Adjusts content wrapper's margin for fixed navbar */
@@ -149,12 +158,13 @@
               <li><a href="./admin" class="dropdown-item">Admin Login</a></li>
             </ul>
           </li>
-        <?php endif; ?>
 
-        <!-- About Us -->
-        <li class="nav-item">
-          <a href="./?page=about" class="nav-link <?= isset($page) && $page == 'about' ? "active" : "" ?>">About Us</a>
-        </li>
+          <!-- About Us visible when not logged in -->
+          <li class="nav-item">
+            <a href="./?page=about" class="nav-link <?= isset($page) && $page == 'about' ? "active" : "" ?>">About Us</a>
+          </li>
+
+        <?php endif; ?>
 
         <?php if ($_settings->userdata('id') > 0): ?>
           <!-- If logged in, show additional menu items like Profile and Submit Thesis -->
@@ -219,3 +229,15 @@
     </div>
   </div>
 </nav>
+
+<script>
+  // Shrink navbar on scroll
+  window.onscroll = function () {
+    var topNav = document.getElementById("top-Nav");
+    if (window.scrollY > 50) {
+      topNav.classList.add("navbar-shrink");
+    } else {
+      topNav.classList.remove("navbar-shrink");
+    }
+  };
+</script>
