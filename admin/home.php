@@ -1,4 +1,5 @@
-<h1>Welcome to <?php echo $_settings->info('name') ?></h1>
+<h1>Welcome to <img src="<?= validate_image($_settings->info('logo_name')) ?>" id="logo-img"
+        style="width: 450px; height: 150px; margin-left: -90px;"></img> </h1>
 <!-- Displays the welcome message with the value of 'name' from the settings object -->
 
 <hr class="border-info">

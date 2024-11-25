@@ -120,7 +120,8 @@
     <a href="./" class="navbar-brand">
       <img src="<?php echo validate_image($_settings->info('logo')) ?>" alt="Site Logo"
         class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span><?= $_settings->info('short_name') ?></span>
+      <span><img src=" <?php echo validate_image($_settings->info('logo_name')) ?>"
+          style="width: 200px; height: 50px; margin-left: -35px; margin-top: -10px;"></span>
     </a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
