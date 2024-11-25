@@ -137,7 +137,6 @@
 
         <!-- Admin Maintenance Section -->
         <?php if ($_settings->userdata('type')): ?>
-          <li class="nav-header">Maintenance</li>
           <!-- Departments -->
           <li class="nav-item">
             <a href="<?php echo base_url ?>admin/?page=departments" class="nav-link nav-departments">
