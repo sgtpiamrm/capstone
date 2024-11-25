@@ -86,7 +86,9 @@
                 <div class="input-group">
                     <input type="password" class="form-control" name="password" placeholder="Password" required>
                     <div class="input-group-append">
-                        <span class="input-group-text fas fa-lock"></span>
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span> <!-- Password icon -->
+                        </div>
 
                     </div>
                 </div>
