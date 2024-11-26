@@ -160,7 +160,7 @@
 
         <!-- Not Verified Students -->
         <div class="col">
-            <a href="not_verified_students.php" class="info-box">
+            <div class="info-box">
                 <span class="info-box-icon bg-warning"><i class="fas fa-users"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Not Verified Students</span>
@@ -168,7 +168,7 @@
                         <?php echo $conn->query("SELECT * FROM student_list WHERE status = 0")->num_rows; ?>
                     </span>
                 </div>
-            </a>
+            </div>
         </div>
 
         <!-- Verified Archives -->
@@ -186,7 +186,7 @@
 
         <!-- Not Verified Archives -->
         <div class="col">
-            <a href="not_verified_archives.php" class="info-box">
+            <div class="info-box">
                 <span class="info-box-icon bg-dark"><i class="fas fa-archive"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Not Verified Archives</span>
@@ -194,7 +194,7 @@
                         <?php echo $conn->query("SELECT * FROM archive_list WHERE status = 0")->num_rows; ?>
                     </span>
                 </div>
-            </a>
+            </div>
         </div>
     </div>
 </body>
