@@ -13,7 +13,6 @@
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f8f9fa;
-            color: #333;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
@@ -21,7 +20,6 @@
 
         h1 {
             text-align: left;
-            color: #333;
             font-weight: bold;
             margin: 20px;
         }
@@ -119,7 +117,7 @@
 
 <body>
     <h1>Welcome to <img src="<?= validate_image($_settings->info('logo_name')) ?>" id="logo-img"
-            style="width: 450px; height: 150px; margin-left: -90px;"></img> </h1>
+            style="width: 200px; height: 100%; margin-left: -30px;"></img> </h1>
     <div class="row">
         <!-- Department List -->
         <div class="col">
