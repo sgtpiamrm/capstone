@@ -23,13 +23,18 @@
 </style>
 
 <!-- Navbar -->
-<nav
-  class="main-header navbar navbar-expand navbar-light border border-dark border-top-0 border-left-0 border-right-0 navbar-light text-sm shadow-sm">
+<nav class="main-header navbar navbar-expand navbar-light navbar-light text-sm shadow-sm">
   <!-- Left navbar links -->
   <ul class="navbar-nav">
     <!-- Menu Button -->
     <li class="nav-item">
-      <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      <a class="nav-link" data-widget="pushmenu" href="#" role="button">
+        <!-- SVG Icon for Menu -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+          class="size-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+      </a>
     </li>
 
     <!-- Navbar Brand/Title -->
@@ -43,28 +48,6 @@
 
   <!-- Right navbar links -->
   <ul class="navbar-nav ml-auto">
-    <!-- Navbar Search (Currently Disabled) -->
-    <!-- <li class="nav-item">
-      <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-        <i class="fas fa-search"></i>
-      </a>
-      <div class="navbar-search-block">
-        <form class="form-inline">
-          <div class="input-group input-group-sm">
-            <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-            <div class="input-group-append">
-              <button class="btn btn-navbar" type="submit">
-                <i class="fas fa-search"></i>
-              </button>
-              <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                <i class="fas fa-times"></i>
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </li> -->
-
     <!-- User Profile Dropdown -->
     <li class="nav-item">
       <div class="btn-group nav-link">
@@ -92,10 +75,7 @@
         </div>
       </div>
     </li>
-
-    <!-- Additional Navbar Items (Currently Empty) -->
-    <li class="nav-item">
-    </li>
   </ul>
 </nav>
+
 <!-- /.navbar -->
