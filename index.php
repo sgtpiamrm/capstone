@@ -95,14 +95,13 @@
 
     <!-- Main content wrapper -->
     <div class="content-wrapper pt-5" style="min-height: 2px;">
-
       <!-- Display header for home or about_us page -->
       <?php if ($page == "home" || $page == "about_us"): ?>
         <div id="header" class="shadow mb-4">
           <div class="d-flex justify-content-center h-100 w-100 align-items-center flex-column px-3">
             <!-- Title of the site -->
-            <img src="<?= validate_image($_settings->info('name')) ?>" id="logo-img" class="img-fluid"
-              style="width: 600px; height: 220px;"></img>
+            <img src="<?= validate_image($_settings->info('logo_name')) ?>" id="logo-img" class="img-fluid"
+              style="width: 600px; height: 230px;"></img>
 
             <!-- Searchable OPAC feature -->
             <form id="search-form" action="search_results.php" method="GET">
@@ -132,6 +131,8 @@
         </div>
       </div>
     <?php endif; ?>
+
+
 
     <script>
       $(function () {
